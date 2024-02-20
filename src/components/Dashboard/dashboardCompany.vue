@@ -1,17 +1,17 @@
 <!-- src/App.vue -->
 <template>
   <v-app>
+    <sideBarComapny/>
     <v-container>
-    <v-row>
-      <v-col>
-        <v-card>
-          <v-card-title class="headline">Welcome to the Dashboard</v-card-title>
-          <v-card-subtitle>Explore your company insights here.</v-card-subtitle>
-        </v-card>
+      <v-row>
+        <v-col>
+         <v-card>
+           <v-card-title class="headline">Welcome to the Dashboard</v-card-title>
+           <v-card-subtitle>Explore your company insights here.</v-card-subtitle>
+         </v-card>
       </v-col>
     </v-row>
   </v-container>
-    <sideBarComapny/>
     
   </v-app>
 </template>
@@ -24,6 +24,14 @@ export default {
   components: {
     sideBarComapny,
   },
+  data:()=>{
+     return{
+      
+     }
+  },
+  methods:{
+    
+  }
 };
 </script>
 <style scoped>

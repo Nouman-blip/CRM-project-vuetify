@@ -13,11 +13,11 @@
           </td>
           <td>
             <v-menu offset-y>
-              <template v-slot:activator="{ on }">
-                <v-btn icon v-on="on">
-                  <v-icon>mdi-dots-vertical</v-icon>
-                </v-btn>
-              </template>
+               <template v-slot:activator="{ on }">
+                      <v-btn icon v-on="on">
+                     <v-icon>mdi-dots-vertical</v-icon>
+                     </v-btn>
+               </template>
               <v-list>
                 <v-list-item @click="editCompany(item)">
                   <v-list-item-title>Edit</v-list-item-title>
@@ -25,8 +25,12 @@
                 <v-list-item @click="deleteCompany(item)">
                   <v-list-item-title>Delete</v-list-item-title>
                 </v-list-item>
+                <v-list-item @click="$router.push('/companies/departments')">
+                  <v-list-item-title>Add Department</v-list-item-title>
+                </v-list-item>
               </v-list>
             </v-menu>
+            
           </td>
         </tr>
       </template>
@@ -60,7 +64,6 @@
 import CompanyRegistrationForm from "../views/companyRegistrationForm.vue";
 import sideBarCompany from './sideBarComapny.vue';
 import CompanyModal from '../views/companyModal.vue';
-
 export default {
   components: {
     CompanyRegistrationForm,
@@ -121,31 +124,8 @@ export default {
       localStorage.setItem("companies", JSON.stringify(updatedCompanies));
       this.fetchCompanies();
     },
-    openAddEmployeeModal(company) {
-      this.editingCompany = company;
-      this.addEmployeeModal = true;
-    },
-    saveEmployee() {
-      if (!this.editingCompany) return;
-
-      const newEmployee = {
-        employee_id: 'new_employee_id', // Generate a unique ID as needed
-        employee_name: this.newEmployeeName,
-        employee_email: this.newEmployeeEmail,
-      };
-
-      this.editingCompany.users.push(newEmployee);
-      this.saveCompany(this.editingCompany); // Save the updated company with the new employee
-
-      // Optionally, you can log the companies data
-      console.log('Companies after adding employee:', this.companies);
-
-      // Close the add employee modal
-      this.addEmployeeModal = false;
-      // Optionally, you can reset the input fields
-      this.newEmployeeName = "";
-      this.newEmployeeEmail = "";
-    },
+    // 
+    
     openCompanyModal(company) {
       this.editingCompany = company;
       this.companyModalOpen = true;
