@@ -3,7 +3,7 @@
   <v-form ref="form" v-model="valid">
     <v-text-field v-model="company.name" label="Company Name" required></v-text-field>
     <v-text-field v-model="company.email" label="Email" type="email" required></v-text-field>
-    <v-text-field v-model="company.user" label="User" type="text" required></v-text-field>
+    <v-text-field v-model="company.description" label="description" type="text" required></v-text-field>
     <v-text-field v-model="company.logo" label="Logo URL" required></v-text-field>
 
    

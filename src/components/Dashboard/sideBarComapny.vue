@@ -56,6 +56,17 @@
           <v-list-item-title class="white--text">Departments</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
+
+      <!-- users Link -->
+      <v-list-item link to="/companies/users">
+        <v-list-item-icon>
+          <v-icon class="white--text">mdi-account</v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title class="white--text">users</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+      
     </v-list>
   </v-navigation-drawer>
 </v-container>

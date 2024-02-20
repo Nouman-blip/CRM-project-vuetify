@@ -1,12 +1,14 @@
 <template>
   <v-container>
     <sideBarCompany />
+
+    <v-btn @click="openModal" color="primary" class="mt-2 mb-2">Add New Company</v-btn>
     <v-data-table :items="companies" :headers="headers" @row-click="editCompany">
       <template v-slot:item="{ item }">
         <tr>
           <td>{{ item.name }}</td>
           <td>{{ item.email }}</td>
-          <td>{{ item.user }}</td>
+          <td>{{ item.description }}</td>
           <td>
             <!-- Conditionally render the logo if a valid URL is provided -->
             <v-img v-if="isValidUrl(item.logo)" :src="item.logo" aspect-ratio="2"></v-img>
@@ -36,7 +38,6 @@
       </template>
     </v-data-table>
 
-    <v-btn @click="openModal" color="primary">Add New Company</v-btn>
 
     <!-- Company Registration Modal -->
     <v-dialog v-model="modalOpen" max-width="500px">
@@ -52,23 +53,16 @@
         </v-card-text>
       </v-card>
     </v-dialog>
-
-    
-
-    <!-- Company Modal -->
-    <company-modal :company="editingCompany" :modal-open="companyModalOpen" @close-modal="closeCompanyModal" />
   </v-container>
 </template>
 
 <script>
 import CompanyRegistrationForm from "../views/companyRegistrationForm.vue";
 import sideBarCompany from './sideBarComapny.vue';
-import CompanyModal from '../views/companyModal.vue';
 export default {
   components: {
     CompanyRegistrationForm,
     sideBarCompany,
-    CompanyModal,
   },
   data() {
     return {
@@ -76,7 +70,7 @@ export default {
       headers: [
         { text: "Name", value: "name" },
         { text: "Email", value: "email" },
-        {text:"User",value:"user"},
+        {text:"Description",value:"description"},
         { text: "Logo", value: "logo" },
         { text: "Actions", value: "actions", sortable: false },
       ],
@@ -113,7 +107,6 @@ export default {
         }
       } else {
         company.id = Date.now();
-        company.users = []; // Initialize users array for the new company
         updatedCompanies.push(company);
       }
       localStorage.setItem("companies", JSON.stringify(updatedCompanies));
